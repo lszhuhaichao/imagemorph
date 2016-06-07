@@ -16,6 +16,8 @@ imshow(I2);
 hold on;
 plot(cp2(:,1),cp2(:,2),'*');
 
-n_step = 3;
+n_step = 50;
 
-morphImage(I1,I2, cp1,cp2, n_step, output_name);
+kernel = @thin_plate_spline;
+
+morphImage(I1,I2, cp1,cp2, n_step, output_name,kernel);

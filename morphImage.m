@@ -1,4 +1,4 @@
-function morphImage(img1,img2, cp1,cp2, n_step, output_name)
+function morphImage(img1,img2, cp1,cp2, n_step, output_name,kernel)
 
 % Find the values of the weights.
 N = size(cp1, 1); 
@@ -34,12 +34,11 @@ tic;
 num = 0;
 for t=steps:steps:0.99
     num = num + 1;
-    disp(['t=' mat2str(t) ', ' int2str(num) '/' int2str(len)]);
+    disp(['t=' mat2str(t,5) ', ' int2str(num) '/' int2str(len)]);
     % Interpolate control points.
     yt = (1 - t) * y1 + t * y2;
     xt = (1 - t) * x1 + t * x2;
 
-    kernel = @thin_plate_spline;
     %kernel = @(s) ( exp( -kw * (s * s) ) );
 
     % Calculate weights
@@ -54,6 +53,6 @@ for t=steps:steps:0.99
     % Interpolate images and write.
     If = (1 - t) * I1 + t * I2;
 
-    imwrite(If, [output_name '_' mat2str(t) '.png']);
+    imwrite(If, [output_name '_' mat2str(t,5) '.png']);
 end
 toc

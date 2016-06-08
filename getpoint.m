@@ -8,7 +8,6 @@ pt = get(gca,'currentpoint');
 h = get(gca, 'children');
 h = h(end);
 pt = floor( pt(1,1:2) );
-pt = [pt(2) pt(1)];
 plot(pt(2), pt(1),'*');
 
 if(isempty(find(handles==h, 1)))
